@@ -1,0 +1,71 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.1.1, pluggy-1.7.0 -- /workspace/.venv-fin/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/finance-app-py
+configfile: pyproject.toml
+testpaths: tests
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 50 items
+
+tests/test_assistant.py::test_runway_answer_ru PASSED                    [  2%]
+tests/test_assistant.py::test_afford PASSED                              [  4%]
+tests/test_assistant.py::test_pulse_explains PASSED                      [  6%]
+tests/test_assistant.py::test_spend_week PASSED                          [  8%]
+tests/test_assistant.py::test_hebrew_receipt PASSED                      [ 10%]
+tests/test_assistant.py::test_help_and_hebrew PASSED                     [ 12%]
+tests/test_assistant.py::test_parse_amount PASSED                        [ 14%]
+tests/test_money.py::test_minor_units_round_trip PASSED                  [ 16%]
+tests/test_money.py::test_no_float_drift PASSED                          [ 18%]
+tests/test_money.py::test_float_rejected PASSED                          [ 20%]
+tests/test_money.py::test_currency_mismatch PASSED                       [ 22%]
+tests/test_money.py::test_bankers_rounding PASSED                        [ 24%]
+tests/test_money.py::test_allocation_sums_exactly[1] PASSED              [ 26%]
+tests/test_money.py::test_allocation_sums_exactly[2] PASSED              [ 28%]
+tests/test_money.py::test_allocation_sums_exactly[3] PASSED              [ 30%]
+tests/test_money.py::test_allocation_sums_exactly[7] PASSED              [ 32%]
+tests/test_money.py::test_allocation_sums_exactly[12] PASSED             [ 34%]
+tests/test_money.py::test_allocation_sums_exactly[36] PASSED             [ 36%]
+tests/test_money.py::test_negative_allocation PASSED                     [ 38%]
+tests/test_money.py::test_bad_allocation PASSED                          [ 40%]
+tests/test_money.py::test_zero_digit_currency_and_default PASSED         [ 42%]
+tests/test_money.py::test_before_close_charges_next_month PASSED         [ 44%]
+tests/test_money.py::test_after_close_rolls_two_months PASSED            [ 46%]
+tests/test_money.py::test_installment_schedule PASSED                    [ 48%]
+tests/test_runway_pulse.py::test_deterministic_with_seed PASSED          [ 50%]
+tests/test_runway_pulse.py::test_no_variable_spend_is_exact PASSED       [ 52%]
+tests/test_runway_pulse.py::test_calm_user PASSED                        [ 54%]
+tests/test_runway_pulse.py::test_stressed_user PASSED                    [ 56%]
+tests/test_runway_pulse.py::test_weights_sum_to_one PASSED               [ 58%]
+tests/test_security.py::test_bip39_vector PASSED                         [ 60%]
+tests/test_security.py::test_generate_round_trip_and_checksum PASSED     [ 62%]
+tests/test_security.py::test_key_hierarchy_and_aad PASSED                [ 64%]
+tests/test_security.py::test_backup_round_trip PASSED                    [ 66%]
+tests/test_security.py::test_memory_keychain_off_ios PASSED              [ 68%]
+tests/test_snap.py::test_hebrew_total PASSED                             [ 70%]
+tests/test_snap.py::test_no_total_returns_none PASSED                    [ 72%]
+tests/test_snap.py::test_matcher_tolerance PASSED                        [ 74%]
+tests/test_snap.py::test_best_match_prefers_merchant PASSED              [ 76%]
+tests/test_storage.py::test_migrations PASSED                            [ 78%]
+tests/test_storage.py::test_seed_idempotent_stable_ids PASSED            [ 80%]
+tests/test_storage.py::test_soft_delete_and_undo PASSED                  [ 82%]
+tests/test_storage.py::test_card_settlement_and_installments PASSED      [ 84%]
+tests/test_storage.py::test_budget_status PASSED                         [ 86%]
+tests/test_storage.py::test_lww_conflict_remote_newer PASSED             [ 88%]
+tests/test_storage.py::test_lww_conflict_local_newer PASSED              [ 90%]
+tests/test_storage.py::test_remote_insert PASSED                         [ 92%]
+tests/test_storage.py::test_hlc_monotonic PASSED                         [ 94%]
+tests/test_ui_smoke.py::test_quick_add_flow PASSED                       [ 96%]
+tests/test_ui_smoke.py::test_phrase_shown_once PASSED                    [ 98%]
+tests/test_ui_smoke.py::test_insights_and_export PASSED                  [100%]
+
+=============================== warnings summary ===============================
+tests/test_ui_smoke.py::test_quick_add_flow
+  /workspace/finance-app-py/src/finance/ui/screens.py:28: DeprecationWarning: The 'headings' keyword argument is deprecated; use 'columns' instead.
+    self.table = toga.Table(headings=["Дата", "Сумма", "Категория", "Получатель"], style=Pack(flex=1),
+
+tests/test_ui_smoke.py::test_quick_add_flow
+  /workspace/finance-app-py/src/finance/ui/screens.py:28: DeprecationWarning: The `accessors` argument is deprecated. To specify a non-default accessor for a column, use an `AccessorColumn`. To specify the ordering of accessors use a `ListSource` with an `accessors` argument for the data.
+    self.table = toga.Table(headings=["Дата", "Сумма", "Категория", "Получатель"], style=Pack(flex=1),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 50 passed, 2 warnings in 0.39s ========================
