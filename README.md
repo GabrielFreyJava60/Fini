@@ -68,3 +68,7 @@ briefcase package iOS       # для App Store / TestFlight
 
 - Сборка `briefcase create/build/run iOS` (нужен Mac), работа Keychain через rubicon-objc, вид экранов на iPhone.
 - `briefcase dev` на этом Linux-компьютере остановился на отсутствии GTK-зависимостей; конфигурацию Briefcase он прочитал без ошибок.
+
+## App Store
+
+Release prep lives in `docs/app-store/` (start with `SUBMISSION.md`), privacy policy in `docs/privacy-policy.md`, privacy manifest in `ios/PrivacyInfo.xcprivacy`, icon in `src/finance/resources/icons/` (`scripts/make_icon.py`).
