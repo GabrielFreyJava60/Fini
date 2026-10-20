@@ -1,6 +1,6 @@
 [project]
 name = "finance"
-version = "0.1.0"
+version = "1.0.0"
 description = "Privacy-first personal finance (Python/BeeWare port)"
 requires-python = ">=3.11"
 license = "LicenseRef-Proprietary"
@@ -12,16 +12,22 @@ dependencies = ["cryptography>=43"]
 test = ["pytest>=8", "toga-core~=0.5.0", "toga-dummy~=0.5.0"]
 
 [tool.briefcase]
-project_name = "Finance"
+project_name = "Fini"
+# PLACEHOLDER: reverse-DNS prefix you own. Final bundle id = "<bundle>.finance"
+# (app key below), e.g. com.gabrielfreidlin.finance. It must match the
+# App ID registered in Certificates, Identifiers & Profiles. See docs/app-store/SUBMISSION.md.
 bundle = "com.gabrielfreidlin"
-version = "0.1.0"
-url = "https://example.com/finance"
+version = "1.0.0"
+url = "https://gabrielfreyjava60.github.io/Fini/"
 license.file = "LICENSE"
 author = "Gabriel Freidlin"
-author_email = "you@example.com"
+author_email = "support@example.com"  # PLACEHOLDER
 
 [tool.briefcase.app.finance]
-formal_name = "Финансы"
+formal_name = "Fini"  # display name on the Home Screen
+build = "1"           # CFBundleVersion; bump for every upload
+icon = "src/finance/resources/icons/fini"
+splash_background_color = "#12204A"
 description = "Personal budget & cash-flow forecasting, offline and private"
 long_description = "Ledger, quick add, budgets, Runway forecast, Pulse stress index, offline assistant."
 sources = ["src/finance"]
@@ -41,7 +47,13 @@ requires = ["toga-winforms~=0.5.0"]
 [tool.briefcase.app.finance.iOS]
 # cryptography: binary iOS wheel served from the BeeWare package repository (verify on first build).
 requires = ["toga-iOS~=0.5.0", "std-nslog~=1.0.3", "rubicon-objc>=0.5"]
-info."NSFaceIDUsageDescription" = "Защита доступа к финансовым данным"
+# Only keys actually needed. No camera/photos/mic/Face ID/location prompts: the app
+# does not use those APIs, and unused usage strings invite review questions.
+info."ITSAppUsesNonExemptEncryption" = false   # see docs/app-store/export-compliance.md
+info."CFBundleDevelopmentRegion" = "en"
+info."CFBundleLocalizations" = ["en", "ru", "he"]
+info."UIRequiresFullScreen" = false
+min_os_version = "15.0"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
