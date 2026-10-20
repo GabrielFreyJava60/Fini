@@ -1,0 +1,68 @@
+# XcodeGen spec — run `xcodegen generate` on a Mac to produce FinanceApp.xcodeproj.
+# (The .xcodeproj is generated, not committed, to avoid merge conflicts.)
+name: FinanceApp
+options:
+  bundleIdPrefix: com.gabrielfreidlin
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    DEVELOPMENT_TEAM: ""   # set your team ID
+packages:
+  CoreModels: { path: Packages/CoreModels }
+  Persistence: { path: Packages/Persistence }
+  SyncVault: { path: Packages/SyncVault }
+  Runway: { path: Packages/Runway }
+  Pulse: { path: Packages/Pulse }
+  Snap: { path: Packages/Snap }
+  DesignSystem: { path: Packages/DesignSystem }
+  Widgets: { path: Packages/Widgets }
+  Intents: { path: Packages/Intents }
+targets:
+  FinanceApp:
+    type: application
+    platform: iOS
+    sources: [App/FinanceApp]
+    entitlements:
+      path: App/FinanceApp/FinanceApp.entitlements
+    info:
+      path: App/FinanceApp/Info.plist
+      properties:
+        CFBundleDisplayName: Finance
+        UILaunchScreen: {}
+        NSCameraUsageDescription: "Scan receipts on-device. Images never leave your iPhone."
+        NSFaceIDUsageDescription: "Lock your finances with Face ID."
+    dependencies:
+      - package: CoreModels
+      - package: Persistence
+      - package: SyncVault
+      - package: Runway
+      - package: Pulse
+      - package: Snap
+      - package: DesignSystem
+      - package: Intents
+      - target: QuickLogWidgetExtension
+  QuickLogWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources: [App/QuickLogWidgetExtension]
+    entitlements:
+      path: App/QuickLogWidgetExtension/QuickLogWidgetExtension.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.gabrielfreidlin.finance]
+    info:
+      path: App/QuickLogWidgetExtension/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    dependencies:
+      - package: Widgets
+      - package: Intents
+schemes:
+  FinanceApp:
+    build: { targets: { FinanceApp: all } }
+    test:
+      targets: [CoreModelsTests, PersistenceTests, SyncVaultTests, RunwayTests, PulseTests, SnapTests]
