@@ -1,0 +1,49 @@
+[project]
+name = "finance"
+version = "0.1.0"
+description = "Privacy-first personal finance (Python/BeeWare port)"
+requires-python = ">=3.11"
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
+authors = [{ name = "Gabriel Freidlin" }]
+dependencies = ["cryptography>=43"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "toga-core~=0.5.0", "toga-dummy~=0.5.0"]
+
+[tool.briefcase]
+project_name = "Finance"
+bundle = "com.gabrielfreidlin"
+version = "0.1.0"
+url = "https://example.com/finance"
+license.file = "LICENSE"
+author = "Gabriel Freidlin"
+author_email = "you@example.com"
+
+[tool.briefcase.app.finance]
+formal_name = "Финансы"
+description = "Personal budget & cash-flow forecasting, offline and private"
+long_description = "Ledger, quick add, budgets, Runway forecast, Pulse stress index, offline assistant."
+sources = ["src/finance"]
+test_sources = ["tests"]
+requires = ["cryptography>=43"]
+test_requires = ["pytest>=8"]
+
+[tool.briefcase.app.finance.macOS]
+requires = ["toga-cocoa~=0.5.0", "std-nslog~=1.0.3"]
+
+[tool.briefcase.app.finance.linux]
+requires = ["toga-gtk~=0.5.0"]
+
+[tool.briefcase.app.finance.windows]
+requires = ["toga-winforms~=0.5.0"]
+
+[tool.briefcase.app.finance.iOS]
+# cryptography: binary iOS wheel served from the BeeWare package repository (verify on first build).
+requires = ["toga-iOS~=0.5.0", "std-nslog~=1.0.3", "rubicon-objc>=0.5"]
+info."NSFaceIDUsageDescription" = "Защита доступа к финансовым данным"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = ["ignore:The 'headings' keyword:DeprecationWarning", "ignore:The `accessors` argument:DeprecationWarning"]
